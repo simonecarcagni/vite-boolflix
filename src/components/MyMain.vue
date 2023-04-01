@@ -1,14 +1,16 @@
 <script>
 import MyFilmsProfile from './MyFilmsProfile.vue';
-import { store } from '../store.js'
+import MySeriesProfile from './MySeriesProfile.vue';
+
 export default {
     name: 'MyMain',
     components: {
         MyFilmsProfile,
+        MySeriesProfile,
     },
     data() {
         return {
-            store
+
         }
     }
 }
@@ -17,8 +19,13 @@ export default {
 
 <template>
     <div class="main_container">
-        <div class="container">
+        <h1 class="text-center text-light">Film</h1>
+        <div class="container mb-5">
             <MyFilmsProfile />
+        </div>
+        <h1 class="text-center text-light">Serie TV</h1>
+        <div class="container mt-5">
+            <MySeriesProfile />
         </div>
     </div>
 </template>

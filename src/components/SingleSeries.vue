@@ -1,15 +1,15 @@
 <script>
 
 export default {
-    name: 'SingleFilm',
+    name: 'SingleSeries',
     data() {
         return {
 
         }
     },
     props: {
-        originaltitle: String,
-        title: String,
+        originalname: String,
+        name: String,
         overview: String,
         language: String,
         image: String,
@@ -22,12 +22,12 @@ export default {
     <div class="flip-card m-2">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img :src="`https://image.tmdb.org/t/p/w342${image}`" :alt="title">
+                <img :src="`https://image.tmdb.org/t/p/w342${image}`" :alt="name">
             </div>
             <div class="flip-card-back">
-                <h6>Titolo Originale: {{ originaltitle }}</h6>
-                <h6>Titolo: {{ title }}</h6>
-                <p class="overview" maxlength="100">Trama: {{ overview }}</p>
+                <h6>Titolo Originale: {{ originalname }}</h6>
+                <h6>Titolo: {{ name }}</h6>
+                <p class="overview ">Trama: {{ overview }}</p>
                 <p>Lingua Originale: {{ language }}</p>
             </div>
         </div>

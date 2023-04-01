@@ -1,6 +1,6 @@
 <script>
 import SingleFilm from './SingleFilm.vue';
-
+import { store } from '../store.js';
 export default {
     name: 'MyFilmsProfile',
     components: {
@@ -8,7 +8,7 @@ export default {
     },
     data() {
         return {
-
+            store
         }
     }
 }
@@ -16,7 +16,10 @@ export default {
 </script>
 
 <template>
-    <SingleFilm />
+    <div class="d-flex flex-wrap">
+        <SingleFilm v-for="film in store.filmList" :image="film.poster_path" :originaltitle="film.original_title"
+            :title="film.title" :overview="film.overview" :language="film.original_language" />
+    </div>
 </template>
 
 <style lang="scss" scoped>

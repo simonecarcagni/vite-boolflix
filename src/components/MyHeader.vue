@@ -1,11 +1,16 @@
 <script>
-import { store } from '../store.js'
+import { store } from '../store.js';
+import axios from 'axios';
+
 export default {
     name: 'MyHeader',
     data() {
         return {
             store
         }
+    },
+    methods: {
+
     }
 }
 
@@ -16,8 +21,8 @@ export default {
         <div class="d-flex justify-content-between py-3 px-5">
             <h1 class="text-danger">Boolflix</h1>
             <div class="d-flex ms_search_bar">
-                <input type="text" class="form-control mx-1" placeholder="Inserisci il film da cercare"
-                    aria-label="Film Recipient" aria-describedby="button-addon2">
+                <input type=" text" v-model="store.searchInput" class="form-control mx-1"
+                    placeholder="Inserisci il film da cercare" aria-label="Film Recipient" aria-describedby="button-addon2">
                 <button class="btn btn-danger mx-1" type="button" id="button-addon2">Search</button>
             </div>
         </div>
