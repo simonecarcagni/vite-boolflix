@@ -1,4 +1,5 @@
 <script>
+import { store } from '../store.js';
 import MyFilmsProfile from './MyFilmsProfile.vue';
 import MySeriesProfile from './MySeriesProfile.vue';
 
@@ -10,7 +11,7 @@ export default {
     },
     data() {
         return {
-
+            store
         }
     }
 }
@@ -19,14 +20,20 @@ export default {
 
 <template>
     <div class="main_container">
-        <h1 class="text-center text-light">Film</h1>
-        <div class="container mb-5">
-            <MyFilmsProfile />
+        <div v-if="store.filmList.length > 0">
+            <h1 class="text-center text-light">Film</h1>
+            <div class="container mb-5">
+                <MyFilmsProfile />
+            </div>
+            <h1 class="text-center text-light">Serie TV</h1>
+            <div class="container mt-5">
+                <MySeriesProfile />
+            </div>
         </div>
-        <h1 class="text-center text-light">Serie TV</h1>
-        <div class="container mt-5">
-            <MySeriesProfile />
+        <div v-else>
+            <h1 class="text-center text-light">Inserisci un dato di ricerca</h1>
         </div>
+
     </div>
 </template>
 

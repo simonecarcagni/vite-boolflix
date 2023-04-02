@@ -18,7 +18,7 @@ export default {
 <template>
     <div class="d-flex flex-wrap">
         <SingleFilm v-for="film in store.filmList" :image="film.poster_path" :originaltitle="film.original_title"
-            :title="film.title" :overview="film.overview" :language="film.original_language" />
+            :title="film.title" :overview="film.overview" :language="film.original_language" :vote="film.vote_average" />
     </div>
 </template>
 

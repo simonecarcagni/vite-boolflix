@@ -14,22 +14,43 @@ export default {
             store
         }
     },
-    created() {
-        axios.get('https://api.themoviedb.org/3/search/movie?api_key=8d0d7775723c827d2c6bf7ffec857539&query=wars&language=it')
-            .then(response => {
-                this.store.filmList = response.data.results;
-            })
-        axios.get('https://api.themoviedb.org/3/search/tv?api_key=8d0d7775723c827d2c6bf7ffec857539&query=love&language=it')
-            .then(response => {
-                this.store.seriesTvList = response.data.results;
-            })
+    methods: {
+
+        searchData() {
+
+            let queryMovieUrl = 'https://api.themoviedb.org/3/search/movie?api_key=8d0d7775723c827d2c6bf7ffec857539&language=it';
+
+            let queryTvUrl = 'https://api.themoviedb.org/3/search/tv?api_key=8d0d7775723c827d2c6bf7ffec857539&language=it';
+
+            if (store.searchInput.length > 0) {
+                queryMovieUrl += `&query=${store.searchInput}`;
+                queryTvUrl += `&query=${store.searchInput}`;
+            }
+
+            axios.get(queryMovieUrl)
+                .then(response => {
+                    this.store.filmList = response.data.results;
+                })
+
+            axios.get(queryTvUrl)
+                .then(response => {
+                    this.store.seriesTvList = response.data.results;
+                })
+
+            this.store.searchInput = '';
+        },
+
+        resetHome() {
+            this.store.filmList = '';
+            this.store.seriesTvList = '';
+        }
     }
 }
 </script>
 
 <template>
     <div class="ms_bg_color">
-        <MyHeader />
+        <MyHeader @search="searchData" @home="resetHome" />
         <MyMain />
     </div>
 </template>

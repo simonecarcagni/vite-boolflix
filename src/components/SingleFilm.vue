@@ -1,4 +1,6 @@
 <script>
+import { createDOMCompilerError } from '@vue/compiler-dom';
+
 
 export default {
     name: 'SingleFilm',
@@ -13,7 +15,11 @@ export default {
         overview: String,
         language: String,
         image: String,
-    }
+        vote: String
+    },
+    methods: {
+    },
+
 }
 
 </script>
@@ -28,7 +34,10 @@ export default {
                 <h6>Titolo Originale: {{ originaltitle }}</h6>
                 <h6>Titolo: {{ title }}</h6>
                 <p class="overview" maxlength="100">Trama: {{ overview }}</p>
-                <p>Lingua Originale: {{ language }}</p>
+                <p>
+                    Lingua Originale:
+                    {{ language }}
+                </p>
             </div>
         </div>
     </div>
