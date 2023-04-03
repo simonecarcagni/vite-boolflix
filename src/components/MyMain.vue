@@ -1,13 +1,11 @@
 <script>
 import { store } from '../store.js';
-import MyFilmsProfile from './MyFilmsProfile.vue';
-import MySeriesProfile from './MySeriesProfile.vue';
+import MyCardsProfile from './MyCardsProfile.vue'
 
 export default {
     name: 'MyMain',
     components: {
-        MyFilmsProfile,
-        MySeriesProfile,
+        MyCardsProfile,
     },
     data() {
         return {
@@ -21,13 +19,8 @@ export default {
 <template>
     <div class="main_container">
         <div v-if="store.filmList.length > 0">
-            <h1 class="text-center text-light">Film</h1>
-            <div class="container mb-5">
-                <MyFilmsProfile />
-            </div>
-            <h1 class="text-center text-light">Serie TV</h1>
-            <div class="container mt-5">
-                <MySeriesProfile />
+            <div class="container pb-5">
+                <MyCardsProfile />
             </div>
         </div>
         <div v-else>

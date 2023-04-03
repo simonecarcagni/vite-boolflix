@@ -77,9 +77,10 @@ export default {
 
 .flip-card-back {
     height: 100%;
-    background-color: black;
+    background-image: linear-gradient(#bb2d3b, black);
     color: white;
     transform: rotateY(180deg);
+
 
     & p {
         font-size: 12px;

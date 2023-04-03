@@ -1,6 +1,4 @@
 <script>
-import { createDOMCompilerError } from '@vue/compiler-dom';
-
 
 export default {
     name: 'SingleFilm',
@@ -12,6 +10,8 @@ export default {
     props: {
         originaltitle: String,
         title: String,
+        originalname: String,
+        name: String,
         overview: String,
         language: String,
         image: String,
@@ -31,8 +31,10 @@ export default {
                 <img :src="`https://image.tmdb.org/t/p/w342${image}`" :alt="title">
             </div>
             <div class="flip-card-back">
+
                 <h6>Titolo Originale: {{ originaltitle }}</h6>
                 <h6>Titolo: {{ title }}</h6>
+
                 <p class="overview" maxlength="100">Trama: {{ overview }}</p>
                 <p>
                     Lingua Originale:
@@ -86,7 +88,7 @@ export default {
 
 .flip-card-back {
     height: 100%;
-    background-color: black;
+    background-image: linear-gradient(#bb2d3b, black);
     color: white;
     transform: rotateY(180deg);
 
