@@ -1,18 +1,32 @@
 <script>
 
 export default {
-    name: 'SingleSeries',
+    name: 'SingleFilm',
     data() {
         return {
-
+            listOfFlags: ['en', 'fr', 'it']
         }
     },
     props: {
+        originaltitle: String,
+        title: String,
         originalname: String,
         name: String,
         overview: String,
         language: String,
         image: String,
+        vote: Number
+    },
+    methods: {
+        getImagePath(path) {
+            return new URL(path, import.meta.url).href
+        },
+        workVote(vote) {
+            let approximateNumber = Math.floor(Math.round(vote) / 2);
+
+            return approximateNumber;
+        }
+
     }
 }
 
@@ -22,13 +36,23 @@ export default {
     <div class="flip-card m-2">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img :src="`https://image.tmdb.org/t/p/w342${image}`" :alt="name">
+                <img :src="`https://image.tmdb.org/t/p/w342${image}`" :alt="title">
             </div>
             <div class="flip-card-back">
-                <h6>Titolo Originale: {{ originalname }}</h6>
-                <h6>Titolo: {{ name }}</h6>
-                <p class="overview ">Trama: {{ overview }}</p>
-                <p>Lingua Originale: {{ language }}</p>
+
+                <h6>Titolo Originale: {{ title ? title : name }}</h6>
+                <h6>Titolo: {{ originaltitle ? originaltitle : originalname }}</h6>
+
+                <p class="overview" maxlength="100">Trama: {{ overview }}</p>
+                <p class="flag-container" v-if="listOfFlags.includes(language)">
+                    Lingua Originale:
+                    <img :src="getImagePath(`../assets/${language}.png`)" :alt="`Flag of ${language}`">
+                </p>
+                <p v-else>
+                    Lingua Originale:
+                    {{ language }}
+                </p>
+                <h6>{{ workVote(vote) }}</h6>
             </div>
         </div>
     </div>
@@ -81,7 +105,6 @@ export default {
     color: white;
     transform: rotateY(180deg);
 
-
     & p {
         font-size: 12px;
     }
@@ -97,6 +120,13 @@ export default {
     & .overview:hover {
         white-space: normal;
         overflow-y: scroll;
+    }
+
+    & .flag-container {
+        & img {
+            height: 25px;
+            width: 40px;
+        }
     }
 }
 </style>
