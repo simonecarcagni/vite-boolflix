@@ -4,7 +4,8 @@ export default {
     name: 'SingleFilm',
     data() {
         return {
-            listOfFlags: ['en', 'fr', 'it']
+            listOfFlags: ['en', 'fr', 'it'],
+            listOfStars: []
         }
     },
     props: {
@@ -21,10 +22,20 @@ export default {
         getImagePath(path) {
             return new URL(path, import.meta.url).href
         },
-        workVote(vote) {
-            let approximateNumber = Math.floor(Math.round(vote) / 2);
+        fullStar(vote) {
+            let fullStar = Math.floor(Math.round(vote) / 2);
 
-            return approximateNumber;
+            return fullStar;
+        },
+        emptyStar(vote) {
+            let emptyStar = (5 - Math.floor(Math.round(vote) / 2));
+
+            return emptyStar;
+        },
+        capitalizedText(language) {
+            let capitalizedLanguage = language.toUpperCase();
+
+            return capitalizedLanguage;
         }
 
     }
@@ -50,9 +61,13 @@ export default {
                 </p>
                 <p v-else>
                     Lingua Originale:
-                    {{ language }}
+                    {{ capitalizedText(language) }}
                 </p>
-                <h6>{{ workVote(vote) }}</h6>
+                <h6>
+                    <i v-for="n in (fullStar(vote))" class="fa-solid fa-star" style="color: #ffff00;"></i>
+                    <i v-for="n in (emptyStar(vote))" class="fa-regular fa-star"></i>
+
+                </h6>
             </div>
         </div>
     </div>
