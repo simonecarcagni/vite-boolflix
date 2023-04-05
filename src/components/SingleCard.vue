@@ -47,7 +47,8 @@ export default {
     <div class="flip-card m-2">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img :src="`https://image.tmdb.org/t/p/w342${image}`" :alt="title">
+                <img v-if="image" :src="`https://image.tmdb.org/t/p/w342${image}`" :alt="title">
+                <img class="error-image" v-else src="../assets/film.jpg" alt="Immagine Standard">
             </div>
             <div class="flip-card-back">
 
@@ -64,9 +65,8 @@ export default {
                     {{ capitalizedText(language) }}
                 </p>
                 <h6>
-                    <i v-for="n in (fullStar(vote))" class="fa-solid fa-star" style="color: #ffff00;"></i>
-                    <i v-for="n in (emptyStar(vote))" class="fa-regular fa-star"></i>
-
+                    <i v-for="n in (fullStar(vote))" class="fa-solid fa-star" :key="n" style="color: #ffff00;"></i>
+                    <i v-for="n in (emptyStar(vote))" class="fa-regular fa-star" :key="n"></i>
                 </h6>
             </div>
         </div>
@@ -106,6 +106,10 @@ export default {
 .flip-card-front {
     height: 100%;
     width: 100%;
+
+    & .error-image {
+        object-fit: cover;
+    }
 
     & img {
         object-fit: fill;

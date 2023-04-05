@@ -44,6 +44,9 @@ export default {
             this.store.filmList = '';
             this.store.seriesTvList = '';
         }
+    },
+    created() {
+        this.searchData();
     }
 }
 </script>
